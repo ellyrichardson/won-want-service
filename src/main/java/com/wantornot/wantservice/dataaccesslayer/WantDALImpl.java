@@ -47,21 +47,16 @@ public class WantDALImpl implements WantDAL {
 
 	@Override
 	public void deleteWant(String wantId) {
-		// TODO Auto-generated method stub
 		mongoTemplate.remove(getWantById(wantId));
 	}
 
 	@Override
 	public Want getWantById(String wantId) {
-		// TODO Auto-generated method stub
-		//Query query = new Query();
-		//query.addCriteria(Criteria.where("wantId").is(wantId));
 		return mongoTemplate.findById(wantId, Want.class, "want");
 	}
 
 	@Override
 	public Want updateWant(Want want) {
-		// TODO Auto-generated method stub
 		addNewWant(want);
 		return want;
 	}

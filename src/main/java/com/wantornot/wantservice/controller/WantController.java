@@ -16,29 +16,11 @@ import lombok.NoArgsConstructor;
 @RestController
 @RequestMapping(value = "/")
 public class WantController {
-	//private final Logger LOG = LoggerFactory.getLogger(getClass());
-
-	//private final WantRepository wantRepository;
 	private final WantDAL wantDAL;
 
 	public WantController(WantDAL wantDAL) {
-		//this.wantRepository = wantRepository;
 		this.wantDAL = wantDAL;
 	}
-	
-	/*
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public List<Want> getAllWants() {
-		//LOG.info("Getting all users.");
-		return wantRepository.findAll();
-	}*/
-	
-	/*
-	@RequestMapping(value = "/{wantId}", method = RequestMethod.GET)
-	public Optional<Want> getWant(@PathVariable String wantId) {
-		//LOG.info("Getting user with ID: {}.", userId);
-		return wantRepository.findById(wantId);
-	}*/
 	
 	@RequestMapping(value = "/{ownerId}", method = RequestMethod.GET)
 	public Object getWantByOwnerId(@PathVariable String ownerId) {
@@ -70,7 +52,6 @@ public class WantController {
 	
 	@RequestMapping(value = "/delete/{wantId}", method = RequestMethod.DELETE)
 	public String deleteWant(String wantId) {
-		//wantRepository.deleteById(wantId);
 		wantDAL.deleteWant(wantId);
 		return wantId;
 	}
@@ -82,7 +63,6 @@ public class WantController {
 		WantOperations wantOps = new WantOperations();
 		wantOps.updateWantByType(want, wantUpdateType, wantUpdateValue);
 		
-		//return wantRepository.save(want);
 		return wantDAL.updateWant(want);
 	}
 }
